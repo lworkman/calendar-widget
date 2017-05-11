@@ -15,6 +15,7 @@ const CalendarCard = function(props){
         elements.push(<CalendarEvent key={i} info={props.info[i]} height={height} amount={props.info.length}/>);
     }
 
+
     return <div className='calendar-card'>{elements}</div>;
 
 }

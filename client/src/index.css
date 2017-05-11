@@ -7,10 +7,11 @@ body {
 .calendar-widget {
   width: 100%;
   height: 300px;
-  overflow-y: scroll;
   max-width: 400px;
   display: block;
   margin: 0 auto;
+  margin-top: -10px;
+  margin-bottom: -10px;
 }
 
 .calendar-card {
@@ -37,8 +38,11 @@ body {
   border-bottom-color: transparent;
 }
 
-h3, h4, p {
+h3, h4, p, h1 {
   font-family: 'Roboto', sans-serif;
+}
+
+.white-regular {
   font-weight: 300;
   color: white;
 }

@@ -66,17 +66,28 @@ export default class CalendarWidget extends React.Component{
         return sortedEvents;
     }
 
+    turnNumberToMonth(number){
+        let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        return months[number];
+    }
+
     render(){
         let elements = [];
         if (this.state.dataReceived){
             let properData = this.sortEventsIntoArray(this.state.data.events);
 
-            console.log(properData);
+            elements.push(<h2>{this.turnNumberToMonth(properData[0][0]['start_time'].getMonth())}</h2>);
 
             for (let i = 0; i < properData.length; i++){
+                if (i != 0 && properData[i-1][0]['start_time'].getMonth() != properData[i][0]['start_time'].getMonth()){
+                    elements.push(<h2>{this.turnNumberToMonth(properData[i][0]['start_time'].getMonth())}</h2>)
+                }
                 elements.push(<CalendarCard key={i} info={properData[i]} />);
             };
         }
-        return <div className='calendar-widget'>{elements}</div>
+        return <div className='calendar-widget'>
+                <h1>Upcoming Events</h1>
+                {elements}</div>
     }
 }

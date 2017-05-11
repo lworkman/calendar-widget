@@ -17,9 +17,9 @@ const CalendarEvent = function(props){
         'height': props.height * 100 + '%'
     }
 
-    return <div className='calendar-event' style = {style}><h3>{props.info.title}</h3>
-                <h4>{props.info.location}</h4>
-                <p>{start} to {end}</p>
+    return <div className='calendar-event' style = {style}><h3 className='white-regular'>{props.info.title}</h3>
+                <h4 className='white-regular'>{props.info.location}</h4>
+                <p className='white-regular'>{start} to {end}</p>
             </div>;
 }
 
