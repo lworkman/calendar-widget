@@ -1,21 +1,16 @@
 import React from "react";
+import CalendarEvent from "./calendar-event.js"
 
 const CalendarCard = function(props){
 
-    function turnTimeToDateObject(time){
-        let parsedTime = new Date(time);
-        let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    let elements = [];
 
-        return months[parsedTime.getMonth()] + " " + parsedTime.getDay() + ", " + parsedTime.getFullYear() + " - " + parsedTime.getHours() + ":" + (parsedTime.getMinutes() == 0 ? '00' : parsedTime.getMinutes());
+    for(let i = 0; i < props.info.length; i ++){
+        elements.push(<CalendarEvent key={i} info={props.info[i]} />);
     }
 
-    const start = turnTimeToDateObject(props.info.start_time);
-    const end = turnTimeToDateObject(props.info.end_time);
+    return <div className='calendar-card'>{elements}</div>;
 
-    return <div><h3>{props.info.title}</h3>
-                <h4>{props.info.location}</h4>
-                <p>{start} to {end}</p>
-            </div>;
 }
 
 export default CalendarCard;
