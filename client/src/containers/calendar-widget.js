@@ -28,6 +28,13 @@ export default class CalendarWidget extends React.Component{
         }
     }
 
+    separateIntoProperDates(dateArray){
+        var sortedDates = {};
+        dateArray.forEach(function(element){
+            sortedDates
+        }, this);
+    }
+
     render(){
         let elements = [];
         if (this.state.dataReceived){
