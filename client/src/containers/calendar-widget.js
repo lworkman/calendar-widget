@@ -77,6 +77,6 @@ export default class CalendarWidget extends React.Component{
                 elements.push(<CalendarCard key={i} info={properData[i]} />);
             };
         }
-        return <div>{elements}</div>
+        return <div className='calendar-widget'>{elements}</div>
     }
 }
