@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Basic event widget created by Liam Workman. On desktop it's a widget, while on mobile it's a full page app.
+Basic event widget created by Liam Workman in node.js and react.js. On desktop it's a widget, while on mobile it's a full page app.
 
 ## Test environment
 
@@ -17,7 +17,7 @@ While in testing, the app uses "concurrently" to run two node commands. You'll n
 
 `npm install -g concurrently`
 
-Once done, you can run the test environment by navigating to the top leve directory and running the command:
+Once done, you can run the test environment by navigating to the top level directory and running the command:
 
 `npm start`
 
