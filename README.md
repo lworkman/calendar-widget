@@ -4,18 +4,14 @@ Basic event widget created by Liam Workman in node.js and react.js. On desktop i
 
 ## Test environment
 
-There are two different node.js instances in here, so you will need to run:
+There are two different node.js instances in here, so you will need to run on the top level:
 
 `npm install`
 
-On the top level and then run:
+and then run:
 
 `cd ./client/`
 `npm install`
-
-While in testing, the app uses "concurrently" to run two node commands. You'll need to install it:
-
-`npm install -g concurrently`
 
 Once done, you can run the test environment by navigating to the top level directory and running the command:
 
@@ -34,4 +30,4 @@ To run the server, navigate to the top level and run:
 
 `node server.js`
 
-Then head to the `http://localhost:3001`.
+Then head to `http://localhost:3001`.
