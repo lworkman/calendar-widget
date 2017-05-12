@@ -10,6 +10,7 @@
 var express = require('express');
 var app = express();
 var fs = require('fs');
+var path = require("path");
 
 app.get('/api', function(req, res) {
   fs.readFile('events.json','utf8',function(err,data){
@@ -17,6 +18,8 @@ app.get('/api', function(req, res) {
     res.send(data);
   })
 });
+
+app.use(express.static(__dirname + '/client/build'));
 
 app.listen(3001);
 
