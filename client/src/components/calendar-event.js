@@ -1,26 +1,53 @@
+/*
+
+    Liam Workman
+    calendar-event.js
+    React.js component that displays the event information for an event. Changes it's display based on a number
+    of things, including whether the event is currently focused or the event is multi-day.
+
+*/
+
 import React from "react";
+import extraFunctions from "../extra-functions.js";
 
-const CalendarEvent = function(props){
+export default class CalendarEvent extends React.Component{
 
-    function turnTimeToDateObject(time){
-        let parsedTime = new Date(time);
+    constructor(props){
+        super(props);
+        this.state = {
+            'focused': false,
+        }
 
-        let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
-        return months[parsedTime.getMonth()] + " " + parsedTime.getDate().toString() + ", " + parsedTime.getFullYear() + " - " + parsedTime.getHours() + ":" + (parsedTime.getMinutes() == 0 ? '00' : parsedTime.getMinutes());
+        this.start = extraFunctions.turnTimeToDateString(this.props.info.start_time,props.info['sameDay']);
+        this.end = extraFunctions.turnTimeToDateString(this.props.info.end_time,props.info['sameDay']);
     }
 
-    const start = turnTimeToDateObject(props.info.start_time);
-    const end = turnTimeToDateObject(props.info.end_time);
+    // Sets the event to be focused so it shows more information
 
-    let style = {
-        'height': props.height * 100 + '%'
+    expand(){
+        this.setState({'focused': !this.state['focused']});
     }
 
-    return <div className='calendar-event' style = {style}><h3 className='white-regular'>{props.info.title}</h3>
-                <h4 className='white-regular'>{props.info.location}</h4>
-                <p className='white-regular'>{start} to {end}</p>
-            </div>;
+    /* Renders the event, and includes some logic within to do different things:
+
+        1. Renders the container, adding an optional class if the event has been deemed a 'bad event'. Also puts a
+        click event on to make the card expand when it's clicked.
+        2. The title of the event
+        3. An error that shows if the event is focused AND a bad event
+        4. The location to show when the event is expanded. The location is a link to google maps that opens in a new tab. (TODO: make open in app if mobile)
+        5. Shows the time that the event runs for
+        
+    */
+
+    render(){
+
+        return <div className={(!this.props.info['isGood'] ? 'bad-event ' : '' )+(!this.props.info['sameDay'] ? 'multi-day-event ' : '') + 'calendar-event'} onClick={this.expand.bind(this)}>
+                    <h3 className='white-regular'>{this.props.info.title}</h3>
+                    <h4 className='white-regular'>{this.state['focused'] && !this.props.info['isGood'] ? "Start is before end. Human error?" : ''}</h4>
+                    <a className='white-regular' href={'http://maps.google.com/?q=' + this.props.info.location} target='_blank'>{this.state['focused'] ? this.props.info.location : ''}</a>
+                    <p className='white-regular'>{this.start} to {this.end}</p>
+                </div>;
+
+    }
+
 }
-
-export default CalendarEvent;

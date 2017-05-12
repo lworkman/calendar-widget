@@ -1,22 +1,30 @@
+/*
+
+    Liam Workman
+    calendar-card.js
+    React.js component that returns an event and (optionally) the day it's a part of.
+
+*/
+
 import React from "react";
 import CalendarEvent from "./calendar-event.js"
+import extraFunctions from "../extra-functions.js";
 
 const CalendarCard = function(props){
 
-    let elements = [];
-    let total = 0;
+    let date;
 
-    props.info.forEach(function(element){
-        total += (element['end_time'] - element['start_time']);
-    })
+    // If the event provided is on a different day than the one previous (setDay), then display the date.
 
-    for(let i = 0; i < props.info.length; i ++){
-        let height = (props.info[i]['end_time'] - props.info[i]['start_time']) / total;
-        elements.push(<CalendarEvent key={i} info={props.info[i]} height={height} amount={props.info.length}/>);
+    if (props.setDay){
+        date = [<h3 key='date-number' className='date-number'>{props.info['start_time'].getDate()}</h3>,
+            <h4 key='date-day' className='date-day'>{extraFunctions.turnNumberToDay(props.info['start_time'].getDay())}</h4>]
     }
 
-
-    return <div className='calendar-card'>{elements}</div>;
+    return <div className='calendar-card'>
+        <div className='date-column'>{date}</div>
+    <CalendarEvent info={props.info}/>
+    </div>;
 
 }
 
